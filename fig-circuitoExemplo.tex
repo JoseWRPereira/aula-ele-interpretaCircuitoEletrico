@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage{tikz, tkz-euclide}
+\usepackage[european,siunitx]{circuitikz}
+
+\begin{document}
+	\begin{circuitikz}
+		\tkzDefPoints{
+			0.0/5.0/A,	2.0/5.0/B, 4.0/5.0/C,
+			0.0/2.5/D,	2.0/2.5/E, 4.0/2.5/F,
+			0.0/0.0/G,	2.0/0.0/H, 4.0/0.0/I}
+
+		\draw[color=black] (A) to[short,-] (C);
+		\draw[color=black] (E) to[short,-] (F);
+		\draw[color=black] (G) to[short,-] (I);
+
+	  \draw[color=black] (A) to[battery1,l_=$V_{cc}$,-] (G);
+		\draw[color=black] (B) to[R,l=$R_1$,*-] (E);
+		\draw[color=black] (E) to[R,l=$R_3$,*-*] (H);
+		\draw[color=black] (C) to[R,l=$R_2$,-] (F);
+		\draw[color=black] (F) to[R,l=$R_4$,*-] (I);
+
+		\node[teal] (_PA) at (2,5.3) {A};
+		\node[teal] (_PB) at (2,-0.3) {B};
+		\node[teal] (_PCe) at (1.7,2.5) {C};
+		\node[teal] (_PCd) at (4.3,2.5) {C};
+
+	\end{circuitikz}
+\end{document}

@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{tikz, tkz-euclide}
+\usepackage[european,siunitx]{circuitikz}
+
+\begin{document}
+	\begin{circuitikz}
+		\tkzDefPoints{
+			0.0/4.0/A,	2.0/4.0/B, 4.0/4.0/C,
+			0.0/2.0/D,	2.0/2.0/E, 4.0/2.0/F,
+			0.0/0.0/G,	2.0/0.0/H, 4.0/0.0/I}
+
+	  \draw (A) to[battery1,l_=$V_{cc}$,-] (G);
+
+%		\draw (A) to[push button,l=$S$,-] (B);
+		\draw (A) to[short,-] (B);
+
+
+		\draw (C) to[R,l=$R_L$,-] (F);
+		\draw (B) to[R,l=$R_D$,*-] (E);
+
+		\draw (E) to[empty led,l=$D$,-*] (H);
+
+		\draw (B) to[short,-] (C);
+		\draw (F) to[short,-] (I);
+		\draw (I) to[short,-] (H);
+		\draw (H) to[short,-] (G);
+
+%	\draw [->, 	shorten >= 1.5mm, shorten <=1.5mm, >=stealth, red, line width=2pt] (0,1.5) to [out=150, in=220] (0,3.5);
+
+%	\node[color=blue] (_I1) at (1,4.5) {$I_{1}$};
+%	\draw [->,shorten >= 0mm,shorten <=0mm, >=stealth,blue,line width=2pt] (0.5,4.8) to [out=0, in=180] (1.5,4.8);
+
+	\end{circuitikz}
+\end{document}

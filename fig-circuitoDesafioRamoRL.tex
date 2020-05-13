@@ -1,0 +1,33 @@
+\documentclass{standalone}
+\usepackage{tikz, tkz-euclide}
+\usepackage[european,siunitx]{circuitikz}
+
+\begin{document}
+	\begin{circuitikz}
+		\tkzDefPoints{
+			0.0/5.0/A,	2.0/5.0/B, 4.0/5.0/C,
+			0.0/2.0/D,	2.0/2.0/E, 4.0/2.0/F,
+			0.0/0.0/G,	2.0/0.0/H, 4.0/0.0/I}
+
+		\draw[color=lightgray] (B) to[short,-] (C);
+		\draw[color=lightgray] (F) to[short,-] (I);
+		\draw[color=lightgray] (I) to[short,-] (H);
+		\draw[color=lightgray] (H) to[short,-] (G);
+
+	  \draw[color=lightgray] (A) to[battery1,l_=$V_{cc}$,-] (G);
+		\draw[color=lightgray] (A) to[short,-] (B);
+		\draw[color=black] (C) to[R,l=$R_L$,-] (F);
+		\draw[color=lightgray] (B) to[R,l=$R_D$,*-] (E);
+		\draw[color=lightgray] (E) to[empty led,l=$D$,-*] (H);
+
+		\draw[color=black, line width=1pt] (B) to[short,*-] (C);
+		\draw[color=black, line width=1pt] (C) to[short,-] (4,4.05);
+
+		\draw[color=black, line width=1pt] (H) to[short,*-] (I);
+		\draw[color=black, line width=1pt] (I) to[short,-] (4,2.95);
+
+		\node[teal] (_PA) at (2,5.3) {A};
+		\node[teal] (_PB) at (2,-0.3) {B};
+
+	\end{circuitikz}
+\end{document}

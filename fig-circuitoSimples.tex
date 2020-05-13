@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{tikz, tkz-euclide}
+\usepackage[european,siunitx]{circuitikz}
+
+\begin{document}
+	\begin{circuitikz}
+		\tkzDefPoints{
+			0.0/5.0/A,	2.0/5.0/B,
+			0.0/0.0/C,	2.0/0.0/D}
+		
+	\draw (A) to[battery1,l_=$V_{cc}$,-] (C);
+	\draw (B) to[R,l=$R_T$,-] (D);
+	\draw (A) to[short,i=$I$,-] (B);
+	\draw (D) to[short,-] (C);
+	
+%	\draw [->, 	shorten >= 1.5mm, shorten <=1.5mm, >=stealth, red, line width=2pt] (0,1.5) to [out=150, in=220] (0,3.5);
+
+%	\node[color=blue] (_I1) at (1,4.5) {$I_{1}$}; 
+%	\draw [->,shorten >= 0mm,shorten <=0mm, >=stealth,blue,line width=2pt] (0.5,4.8) to [out=0, in=180] (1.5,4.8);
+
+	\end{circuitikz}
+\end{document}
