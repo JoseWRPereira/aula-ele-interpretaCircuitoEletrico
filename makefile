@@ -40,10 +40,19 @@ LATEX1: LATEX0
 LATEX0: $(ARTIGO).tex $(FIGS)
 	$(LATEX) $(ARTIGO)
 
+# $@    $<
 %.aux: %.tex
 	$(LATEX) $<
+	pdftoppm -png $(@:%.aux=%.pdf) $(FIG_PATH)$(<:%.tex=%)
 	mv fig*.pdf $(FIG_PATH)
 
+
+
+
+
+#PDF2PNG: $(FIGS)
+#	pdftoppm -png $(@:%.aux=%.pdf) $(FIG_PATH)
+#	mv $(@:%.aux=%.pdf) $(FIG_PATH)
 
 
 #PDFLATEX: LATEX1
