@@ -1,10 +1,9 @@
+###
+### Makefile - Construção do projeto: Notas de Aula de Eletricidade
+###
 
-# pdflatex -synctex=1 -shell-escape -enable-write18 -interaction=nonstopmode %.tex
-# bibtex %.aux
-# makeindex %.idx
-# makeglossaries %
-
-ARTIGO=Aula
+ENTRADA_TEX=Aula
+SAIDA_PDF=aula-ele-interpretaCircuitosEletricos
 PDF_PATH=./pdf/
 FIG_PATH=./fig/
 
@@ -27,47 +26,24 @@ fig-ativ4.aux
 
 
 artigo: CLR
-	evince $(PDF_PATH)$(ARTIGO).pdf&
+	evince $(PDF_PATH)$(SAIDA_PDF).pdf&
 
 CLR: MOV clear
 
 MOV: LATEX1
-	mv -f *.pdf $(PDF_PATH)
+	mv -f *.pdf $(PDF_PATH)/$(SAIDA_PDF).pdf
 
 LATEX1: LATEX0
-	$(LATEX) -synctex=1 -shell-escape -enable-write18 -interaction=nonstopmode $(ARTIGO)
+	$(LATEX) -synctex=1 -shell-escape -enable-write18 -interaction=nonstopmode $(ENTRADA_TEX)
 
-LATEX0: $(ARTIGO).tex $(FIGS)
-	$(LATEX) $(ARTIGO)
+LATEX0: $(ENTRADA_TEX).tex $(FIGS)
+	$(LATEX) $(ENTRADA_TEX)
 
 # $@    $<
 %.aux: %.tex
 	$(LATEX) $<
 	pdftoppm -png $(@:%.aux=%.pdf) $(FIG_PATH)$(<:%.tex=%)
 	mv fig*.pdf $(FIG_PATH)
-
-
-
-
-
-#PDF2PNG: $(FIGS)
-#	pdftoppm -png $(@:%.aux=%.pdf) $(FIG_PATH)
-#	mv $(@:%.aux=%.pdf) $(FIG_PATH)
-
-
-#PDFLATEX: LATEX1
-#	pdflatex -synctex=1 -shell-escape -enable-write18 -interaction=nonstopmode $(ARTIGO)
-
-#LATEX1: NOMENCLATURA BIB
-#	pdflatex $(ARTIGO)
-
-#BIB: LATEX0
-#	bibtex $(ARTIGO)
-
-#NOMENCLATURA: LATEX0 cap.nlo
-#	makeindex $(ARTIGO)).nlo -s nomencl.ist -o $(ARTIGO)).nls
-
-
 
 
 clean:
